@@ -1,0 +1,13 @@
+To get autohotkey version 1.1 working, go to this page:
+
+https://www.autohotkey.com/download/
+
+extract the zip file to your downloads folder so you have the path:
+
+C:\Users\USER\Downloads\AA_Scripts\AHK Scripts\Program
+
+Then right click on your v1.1 ahk scripts and choose to run them with:
+
+C:\Users\USER\Downloads\AA_Scripts\AHK Scripts\Program\AutoHotkeyU64.exe
+
+by default (make sure it is set as the default program)
