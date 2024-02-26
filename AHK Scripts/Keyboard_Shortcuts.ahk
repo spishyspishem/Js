@@ -11,10 +11,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 FileRead, contents, paths.txt
 StringSplit, lines, contents, `n
-downloads_path := StrReplace(lines1, "`r`n")
-vs_code_path := StrReplace(lines2, "`r`n")
-username := StrReplace(lines3, "`r`n")
-passwd := StrReplace(lines4, "`r`n")
+Jn := StrReplace(lines1, "`r", "")
+downloads_path := StrReplace(lines2, "`r", "")
+vs_code_path := StrReplace(lines3, "`r", "")
+username := StrReplace(lines4, "`r", "")
+passwd := StrReplace(lines5, "`r", "")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extra Shortcuts for Other Applications ;;
@@ -131,7 +132,14 @@ Loop, %id%
 return
 
 F15 & t::
-WinGet, id, list, ahk_exe teams.exe
+if(Jn = "i2")
+{
+  WinGet, id, list, ahk_exe slack.exe
+}
+else
+{
+  WinGet, id, list, ahk_exe teams.exe
+}
 Loop, %id%
 {
   this_ID := id%A_Index%
@@ -143,7 +151,7 @@ return
 ;; Snaps ;;
 ;;;;;;;;;;;
 
-snap_teams_outlook(OUTLOOK_MONITOR_INDEX, TeamsOnRight) ; snap these programs to the leftmost (farthest right) monitor
+snap_teams_outlook(OUTLOOK_MONITOR_INDEX, TeamsOnRight, Jn) ; snap these programs to the leftmost (farthest right) monitor
 {
   SetTitleMatchMode, 2
   ; WinActivate ahk_exe OUTLOOK.EXE
@@ -163,7 +171,15 @@ snap_teams_outlook(OUTLOOK_MONITOR_INDEX, TeamsOnRight) ; snap these programs to
   
   Sleep, 200
   
-  WinActivate ahk_exe Teams.exe
+  ; WinActivate ahk_exe Teams.exe
+  if(Jn = "i2")
+  {
+    WinActivate ahk_exe slack.exe
+  }
+  else
+  {
+    WinActivate ahk_exe teams.exe
+  }
   SysGet, MonitorWorkArea, MonitorWorkArea, %OUTLOOK_MONITOR_INDEX%; %mon% 5
   WinMove, A,, MonitorWorkAreaLeft+200, 300
   Sleep, 200
@@ -200,7 +216,14 @@ snap_onenote_chrome(MONITOR_INDEX) ; snap these programs to the vertical monitor
 
 Launch_App2 & NumpadDot::
 F15 & 3::
-WinActivate ahk_exe Teams.exe
+if(Jn = "i2")
+{
+  WinActivate ahk_exe slack.exe
+}
+else
+{
+  WinActivate ahk_exe teams.exe
+}
 Sleep, 20
 obj := get_loc()
 MouseMove, obj[1]-400, obj[2]
@@ -208,18 +231,18 @@ return
 
 Launch_App2 & Numpad0:: ; Launch_App2 is the calculator button on the keyboard
 OUTLOOK_MONITOR_INDEX := GetRightMostMonitorIndex()
-snap_teams_outlook(OUTLOOK_MONITOR_INDEX, false)
+snap_teams_outlook(OUTLOOK_MONITOR_INDEX, false, Jn)
 return
 
 Launch_App2 & Numpad1:: ; Launch_App2 is the calculator button on the keyboard
 OUTLOOK_MONITOR_INDEX := GetRightMostMonitorIndex()
-snap_teams_outlook(OUTLOOK_MONITOR_INDEX, true)
+snap_teams_outlook(OUTLOOK_MONITOR_INDEX, true, Jn)
 return
 
 Launch_App2 & Numpad4:: ; Launch_App2 is the calculator button on the keyboard
 sorted_monitors := GetMonitorIndexesSortedByLeftmost()
 OUTLOOK_MONITOR_INDEX := sorted_monitors[sorted_monitors.Count() - 1].ind
-snap_teams_outlook(OUTLOOK_MONITOR_INDEX, false)
+snap_teams_outlook(OUTLOOK_MONITOR_INDEX, false, Jn)
 return
 
 Launch_App2 & Numpad2:: ; Launch_App2 is the calculator button on the keyboard
