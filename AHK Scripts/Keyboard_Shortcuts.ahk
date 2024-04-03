@@ -138,7 +138,7 @@ if(Jn = "i2")
 }
 else
 {
-  WinGet, id, list, ahk_exe teams.exe
+  WinGet, id, list, ahk_exe ms-teams.exe
 }
 Loop, %id%
 {
@@ -171,14 +171,14 @@ snap_teams_outlook(OUTLOOK_MONITOR_INDEX, TeamsOnRight, Jn) ; snap these program
   
   Sleep, 200
   
-  ; WinActivate ahk_exe Teams.exe
+  ; WinActivate ahk_exe ms-teams.exe
   if(Jn = "i2")
   {
     WinActivate ahk_exe slack.exe
   }
   else
   {
-    WinActivate ahk_exe teams.exe
+    WinActivate ahk_exe ms-teams.exe
   }
   SysGet, MonitorWorkArea, MonitorWorkArea, %OUTLOOK_MONITOR_INDEX%; %mon% 5
   WinMove, A,, MonitorWorkAreaLeft+200, 300
@@ -222,7 +222,7 @@ if(Jn = "i2")
 }
 else
 {
-  WinActivate ahk_exe teams.exe
+  WinActivate ahk_exe ms-teams.exe
 }
 Sleep, 20
 obj := get_loc()
