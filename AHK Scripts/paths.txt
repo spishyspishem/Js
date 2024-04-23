@@ -3,3 +3,5 @@ C:\Users\USER\Downloads\AA_Scripts\Python Scripts
 C:\Users\USER\AppData\Local\Programs\Microsoft VS Code
 USERNAME
 PASSWORD
+USERNAME2
+PASSWORD2
