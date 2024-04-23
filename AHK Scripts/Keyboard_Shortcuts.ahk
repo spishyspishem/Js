@@ -16,6 +16,8 @@ downloads_path := StrReplace(lines2, "`r", "")
 vs_code_path := StrReplace(lines3, "`r", "")
 username := StrReplace(lines4, "`r", "")
 passwd := StrReplace(lines5, "`r", "")
+username2 := StrReplace(lines6, "`r", "")
+passwd2 := StrReplace(lines7, "`r", "")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extra Shortcuts for Other Applications ;;
@@ -319,6 +321,14 @@ return
 
 Launch_App2 & w::
 Send, %passwd%
+return
+
+Launch_App2 & e::
+Send, %username2%
+return
+
+Launch_App2 & r::
+Send, %passwd2%
 return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
