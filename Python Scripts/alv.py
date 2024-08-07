@@ -19,14 +19,16 @@ def kpalv():
     print(f'Time: {get_time()}')
     time.sleep(60*60)
  
-def kill_dell():
+def kill_procs():
   while True:
-    for proc in psutil.process_iter():
-      if 'DPM.exe' in proc.name():
-        print(get_time, ': Killing:', proc.name(), 'at PID', proc.pid)
-        proc.terminate()
-    time.sleep(3.0)
-    break
+    try:
+      for proc in psutil.process_iter():
+        if any([nme in proc.name() for nme in ['DPM.exe', 'WavesSvc64.exe']]):
+          print(get_time(), ': Killing:', proc.name(), 'at PID', proc.pid)
+          proc.terminate()
+    except Exception as e:
+      pass
+    time.sleep(6.0)
 
 def actpoll():
   POLL_FREQ = 5
@@ -45,7 +47,7 @@ def actpoll():
 
 if __name__ == '__main__':
   t1 = threading.Thread(target=kpalv)
-  t2 = threading.Thread(target=kill_dell)
+  t2 = threading.Thread(target=kill_procs)
   t3 = threading.Thread(target=actpoll)
   
   t1.start()
