@@ -38,11 +38,21 @@ F13 & 1::
 sorted_monitors := GetMonitorIndexesSortedByLeftmost()
 PerformMove(sorted_monitors[1].ind,-1,-1)
 return
- 
+
+F14 & 1::
+sorted_monitors := GetMonitorIndexesSortedByLeftmost()
+PerformMoveWindow(sorted_monitors[1].ind)
+return
+
 Launch_App2 & 2::
 F13 & 2::
 sorted_monitors := GetMonitorIndexesSortedByLeftmost()
 PerformMove(sorted_monitors[2].ind,-1,-1)
+return
+
+F14 & 2::
+sorted_monitors := GetMonitorIndexesSortedByLeftmost()
+PerformMoveWindow(sorted_monitors[2].ind)
 return
 
 Launch_App2 & 3::
@@ -51,10 +61,20 @@ sorted_monitors := GetMonitorIndexesSortedByLeftmost()
 PerformMove(sorted_monitors[3].ind,-1,-1)
 return
 
+F14 & 3::
+sorted_monitors := GetMonitorIndexesSortedByLeftmost()
+PerformMoveWindow(sorted_monitors[3].ind)
+return
+
 Launch_App2 & 4::
 F13 & 4::
 sorted_monitors := GetMonitorIndexesSortedByLeftmost()
 PerformMove(sorted_monitors[4].ind,-1,-1)
+return
+
+F14 & 4::
+sorted_monitors := GetMonitorIndexesSortedByLeftmost()
+PerformMoveWindow(sorted_monitors[4].ind)
 return
 
 Launch_App2 & 5::
